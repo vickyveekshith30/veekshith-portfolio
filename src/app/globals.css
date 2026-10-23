@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-ink: #050506;
+  --color-panel: #0d0d10;
+  --color-line: #232328;
+  --color-fg: #f4f4f2;
+  --color-mute: #9a9aa2;
+  --color-accent: #7fd6c8;
+  --font-display: var(--font-display);
+  --font-sans: var(--font-body);
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; background: var(--color-ink); }
+body { background: var(--color-ink); color: var(--color-fg); font-family: var(--font-body), system-ui, sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+::selection { background: color-mix(in srgb, var(--color-accent) 35%, transparent); }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 6px; }
+
+.glass { background: color-mix(in srgb, var(--color-panel) 70%, transparent); backdrop-filter: blur(14px); border: 1px solid var(--color-line); }
+.spin-slow { animation: spin 60s linear infinite; transform-origin: 50% 50%; }
+.spin-rev { animation: spin 90s linear infinite reverse; transform-origin: 50% 50%; }
+.pulse-soft { animation: pulse 4s ease-in-out infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes pulse { 50% { opacity: .35; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .spin-slow, .spin-rev, .pulse-soft { animation: none; }
+}
